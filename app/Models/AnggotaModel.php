@@ -10,7 +10,7 @@ class AnggotaModel extends Model
     use HasFactory;
     protected $table        = "tbl_anggota";
     protected $primaryKey   = "idanggota";
-    protected $fillable     = ['idanggota','nip','nama','jabatan','tgl_lahir','jk','alamat','hp'];
+    protected $fillable     = ['idanggota','nip','nama','jabatan','tgl_lahir','jk','alamat','hp','file','pinjaman'];
 
     public function detailData($idanggota)
     {

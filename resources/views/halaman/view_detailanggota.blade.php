@@ -5,8 +5,10 @@
 @section('isihalaman')
 <div class="container">
 <p>
-    <h3><center>Detail Anggota  Koperasi SMK Negeri 1 Cimahi</center></h3>
     <p>
+    <a href="/anggota" class="btn btn-sm btn-success">           
+       Kembali
+    </a>
     <table class="table">
         <tr>
             <th>NIP</th>
@@ -54,6 +56,12 @@
             <th>HP</th>
             <th>:</th>
             <th>{{$anggota->hp}}</th>
+        </tr>
+
+        <tr>
+            <th>Foto</th>
+            <th>:</th>
+            <th><img style="max-width:50px;max-height:50px" src="{{ url('/Gambar/' . $anggota->file) }}"></th>
         </tr>
     </table>
 </div>

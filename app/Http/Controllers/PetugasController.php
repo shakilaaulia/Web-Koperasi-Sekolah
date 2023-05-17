@@ -52,12 +52,12 @@ class PetugasController extends Controller
             'hp' => 'required'
         ]);
 
-        $idanggota = PetugasModel::find($idanggota);
-        $idanggota->nama      = $request->nama;
-        $idanggota->alamat = $request->alamat;
-        $idanggota->hp   = $request->hp;
+        $idpetugas = PetugasModel::find($idpetugas);
+        $idpetugas->nama      = $request->nama;
+        $idpetugas->alamat = $request->alamat;
+        $idpetugas->hp   = $request->hp;
 
-        $idanggota->save();
+        $idpetugas->save();
 
         return redirect()->back();
     }

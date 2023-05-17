@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('jk');
             $table->text('alamat');
             $table->number('hp');
+            $table->string('file');
             $table->timestamps();
         });
     }

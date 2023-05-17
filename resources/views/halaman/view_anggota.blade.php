@@ -5,7 +5,6 @@
 @section('isihalaman')
 <div class="container">
 <p>
-<h3><center>Daftar Anggota  Koperasi SMK Negeri 1 Cimahi</center></h3>
 
     <br>
 
@@ -47,7 +46,7 @@
 </button>
 
 <!-- Awal Modal EDIT data Buku -->
-<div class="modal fade" id="modal{{$agt->idanggota}}" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaEditLabel" aria-hidden="true">
+<div class="modal fade" id="modalAnggotaEdit{{$agt->idanggota}}" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaEditLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -85,7 +84,7 @@
                     <div class="form-group row">
                         <label for="penerbit" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" value="{{ $agt->tgl_lahir}}">
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="{{ $agt->tgl_lahir}}">
                         </div>
                     </div>
 
@@ -114,6 +113,14 @@
                     </div>
 
                     <p>
+                    <div class="form-group row">
+                        <label for="penerbit" class="col-sm-4 col-form-label">Foto</label>
+                        <div class="col-sm-8">
+                        <input type="file" class="form-control" id="file" name="file" value="{{ $agt->file}}">
+                        </div>
+                    </div>
+
+                    <p>
                     <div class="modal-footer">
                         <button type="button" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" name="bukutambah" class="btn btn-success">Edit</button>
@@ -136,10 +143,6 @@
         </tbody>
     </table>
 
-    <!--awal pagination -->
-    Halaman : {{ $anggota->currentPage() }} <br />
-    Jumlah Data : {{ $anggota->total() }} <br />
-    Data Per Halaman : {{ $anggota->perPage() }} <br />
 
     {{ $anggota->links() }}
     <!--akhir pagination-->
@@ -207,6 +210,14 @@
                             <label for="hp" class="col-sm-4 col-form-label">No HP</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="hp" name="hp" placeholder="Masukan No HP">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="form-group row">
+                            <label for="hp" class="col-sm-4 col-form-label">Foto</label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" id="file" name="file" placeholder="Masukan No HP">
                             </div>
                         </div>
 

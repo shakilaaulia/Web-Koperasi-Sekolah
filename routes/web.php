@@ -38,12 +38,10 @@ Route::middleware('auth')->group(function(){
     
     //Route untuk Data Pinjam
     Route::get('/pinjam', 'PinjamController@pinjamtampil');
+    Route::get('/pinjam/cari','PinjamController@cari');
     Route::post('/pinjam/tambah','PinjamController@pinjamtambah');
     Route::get('/pinjam/hapus/{idpinjam}','PinjamController@pinjamhapus');
     Route::put('/pinjam/edit/{idpinjam}', 'PinjamController@pinjamedit');
-
-    Route::get('/coba', 'PinjamController@tampil');
-    Route::get('/coba/cari','PinjamController@cari');
 
 });
 

@@ -5,7 +5,6 @@
 @section('isihalaman')
 <div class="container">
 <p>
-<h3><center>Daftar Petugas Koperasi SMK Negeri 1 Cimahi</center></h3>
 
     <br>
 
@@ -39,7 +38,7 @@
                     </button>
 
 <!-- Awal Modal EDIT data Buku -->
-<div class="modal fade" id="modal{{$ptgs->idpetugas}}" tabindex="-1" role="dialog" aria-labelledby="modalPetugasEditLabel" aria-hidden="true">
+<div class="modal fade" id="modalPetugasEdit{{$ptgs->idpetugas}}" tabindex="-1" role="dialog" aria-labelledby="modalPetugasEditLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

@@ -8,9 +8,10 @@
 
 
 <div class="py-2 px-3 text h6" style="background-color: #E8EBED;">
-<div class="nav" style="display: flex;justify-content: flex-end;">
-<form action="/coba/cari" method="GET">
-<div class="input-group input-group-sm" style="width:300px;">
+<div class="nav d-flex justify-content-beetween">
+Daftar Anggota
+<form class="d-flex" action="/coba/cari" method="GET">
+<div class="input-group input-group-sm" style="width:300px;display:flex-end">
   <input type="text" name="cari" class="form-control rounded float-right"  placeholder="Cari Data Anggota" aria-label="Search" aria-describedby="search-addon" value="{{ old('cari') }}"/>
   <input type="submit" class="btn btn-success float-right" value="Search"/>
 </div>
