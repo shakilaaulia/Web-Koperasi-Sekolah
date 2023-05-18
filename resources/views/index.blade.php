@@ -98,9 +98,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light px-3" style="background-color:#65A834;display: flex;justify-content: flex-end;">
                 <div class="input-group" style="width:500px;">
   <input type="search" class="form-control rounded float-right" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-  <button type="button" class="btn btn-success float-right">
-    Search
-</button>
+
 </div>
             
                 </nav>
