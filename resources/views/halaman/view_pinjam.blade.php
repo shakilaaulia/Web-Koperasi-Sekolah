@@ -51,7 +51,7 @@ Daftar Anggota
     Pinjam
 </button>
 <!-- Awal Modal Peminjaman -->
-<!-- <div class="modal fade" id="modalAnggotaEdit{{$agt->idanggota}}" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaEditLabel" aria-hidden="true">
+<div class="modal fade" id="modalAnggotaEdit{{$g->idanggota}}" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaEditLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -65,7 +65,7 @@ Daftar Anggota
                     <div class="form-group row">
                         <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nip" name="nip" value="{{ $agt->nip}}">
+                            <input type="text" class="form-control" id="nip" name="nip" value="{{ $g->nip}}">
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@ Daftar Anggota
                     <div class="form-group row">
                         <label for="judul" class="col-sm-4 col-form-label">Nama</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $agt->nama}}">
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $g->nama}}">
                         </div>
                     </div>
 
@@ -134,7 +134,7 @@ Daftar Anggota
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <!-- Akhir Modal Peminjaman -->
 <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalAnggotaEdit{{$g->idanggota}}"> 
     Bayar
