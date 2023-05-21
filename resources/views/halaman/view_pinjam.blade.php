@@ -47,11 +47,9 @@ Daftar Anggota
                     </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalAnggotaEdit{{$g->idanggota}}"> 
-    Pinjam
-</button>
+                <button type='button' class='btn btn-sm btn-success' data-bs-target='pinjam-{$nip}' data-bs-toggle='modal'>Pinjam</button>
 <!-- Awal Modal Peminjaman -->
-<div class="modal fade" id="modalAnggotaEdit{{$g->idanggota}}" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaEditLabel" aria-hidden="true">
+<div class="modal fade" id="pinjam-{$g->nip}" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaEditLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -59,13 +57,13 @@ Daftar Anggota
             </div>
             <div class="modal-body">
 
-                <form name="formanggotaedit" id="formanggotaedit" action="/anggota/edit/{{ $agt->idanggota}} " method="post" enctype="multipart/form-data">
+                <form name="formanggotaedit" id="formanggotaedit" action="/pinjam/edit/{{ $g->idanggota}} " method="post" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="form-group row">
                         <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nip" name="nip" value="{{ $g->nip}}">
+                            <input type="text" class="form-control" id="nip" name="nip" value="$g->nip">
                         </div>
                     </div>
 
@@ -73,63 +71,11 @@ Daftar Anggota
                     <div class="form-group row">
                         <label for="judul" class="col-sm-4 col-form-label">Nama</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $g->nama}}">
+                            <input type="text" class="form-control" id="nama" name="nama" value="$g->nama">
                         </div>
                     </div>
 
-                    <p>
-                    <div class="form-group row">
-                        <label for="pengarang" class="col-sm-4 col-form-label">Jabatan</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $agt->jabatan}}">
-                        </div>
-                    </div>
-
-                    <p>
-                    <div class="form-group row">
-                        <label for="penerbit" class="col-sm-4 col-form-label">Tanggal Lahir</label>
-                        <div class="col-sm-8">
-                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="{{ $agt->tgl_lahir}}">
-                        </div>
-                    </div>
-
-                    <p>
-                    <div class="form-group row">
-                        <label for="penerbit" class="col-sm-4 col-form-label">Jenis Kelamin</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="jk" name="jk" value="{{ $agt->jk}}">
-                        </div>
-                    </div>
-
-                    <p>
-                    <div class="form-group row">
-                        <label for="penerbit" class="col-sm-4 col-form-label">Alamat</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $agt->alamat}}">
-                        </div>
-                    </div>
-
-                    <p>
-                    <div class="form-group row">
-                        <label for="penerbit" class="col-sm-4 col-form-label">HP</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="hp" name="hp" value="{{ $agt->hp}}">
-                        </div>
-                    </div>
-
-                    <p>
-                    <div class="form-group row">
-                        <label for="penerbit" class="col-sm-4 col-form-label">Foto</label>
-                        <div class="col-sm-8">
-                        <input type="file" class="form-control" id="file" name="file" value="{{ $agt->file}}">
-                        </div>
-                    </div>
-
-                    <p>
-                    <div class="modal-footer">
-                        <button type="button" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" name="bukutambah" class="btn btn-success">Edit</button>
-                    </div>
+                    
                 </form>
             </div>
         </div>
