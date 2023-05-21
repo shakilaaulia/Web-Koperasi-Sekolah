@@ -57,13 +57,13 @@ Daftar Anggota
             </div>
             <div class="modal-body">
 
-                <form name="formanggotaedit" id="formanggotaedit" action="/pinjam/edit/{{ $g->idanggota}} " method="post" enctype="multipart/form-data">
+                <form name="formanggotaedit" id="formanggotaedit" action="/anggota/edit/{{ $agt->idanggota}} " method="post" enctype="multipart/form-data">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="form-group row">
                         <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nip" name="nip" value="$g->nip">
+                            <input type="text" class="form-control" id="nip" name="nip" value="{{ $g->nip}}">
                         </div>
                     </div>
 
