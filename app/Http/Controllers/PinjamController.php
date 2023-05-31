@@ -28,13 +28,32 @@ class PinjamController extends Controller
 
     public function pinjamtampil() 
     { 
-        // mengambil data dari table guru 
+        // mengambil data dari table agt 
         $anggota = DB::table('tbl_anggota')->paginate(1); 
         
         // mengirim data guru ke view index 
         return view('halaman/view_pinjam',['anggota' => $anggota]); 
     }
     
+        //method untuk edit data peminjaman
+    public function pinjamedit($idpinjam, Request $request)
+    {
+        $this->validate($request, [
+            'idpetugas' => 'required',
+            'idsiswa' => 'required',
+            'idbuku' => 'required'
+        ]);
+
+        $idpinjam = PinjamModel::find($idpinjam);
+        $idpinjam->idpetugas    = $request->idpetugas;
+        $idpinjam->idsiswa      = $request->idsiswa;
+        $idpinjam->idbuku       = $request->idbuku;
+
+        $idpinjam->save();
+
+        return redirect()->back();
+    }
+
     public function cari(Request $request)
     {
         // menangkap data pencarian

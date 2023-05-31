@@ -22,6 +22,7 @@ Route::get('/sidebar', 'SidebarController@sidebar')->name('sidebar');
 Route::middleware('auth')->group(function(){
     Route::get('logoutaksi', 'LoginController@logoutaksi')->name('logoutaksi');
     Route::get('home', 'HomeController@index')->name('home');
+    Route::get('kontak', 'HomeController@kontak');
 
     //Route untuk Data Anggota
     Route::get('/anggota', 'AnggotaController@anggotatampil');

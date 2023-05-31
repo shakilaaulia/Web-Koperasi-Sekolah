@@ -18,7 +18,6 @@ class PinjamModel extends Model
         return $this->belongsTo('App\Models\AnggotaModel', 'idanggota');
     }
 
-
     //relasi ke petugas
     public function petugas()
     {

@@ -10,4 +10,9 @@ class HomeController extends Controller
     {      
         return view('halaman/view_home');
     }
+
+    public function kontak()
+    {      
+        return view('halaman/view_kontak');
+    }
 }

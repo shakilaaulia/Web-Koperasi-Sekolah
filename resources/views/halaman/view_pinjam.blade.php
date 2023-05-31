@@ -47,51 +47,148 @@ Daftar Anggota
                     </tr>
                     </tbody>
                 </table>
-                <button type='button' class='btn btn-sm btn-success' data-bs-target='pinjam-{$nip}' data-bs-toggle='modal'>Pinjam</button>
-<!-- Awal Modal Peminjaman -->
-<div class="modal fade" id="pinjam-{$g->nip}" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaEditLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalAnggotaEditLabel">Form Edit Data Anggota</h5>
-            </div>
-            <div class="modal-body">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAnggotaPinjam">
+                    Pinjam
+                </button>
+                
 
-                <form name="formanggotaedit" id="formanggotaedit" action="/anggota/edit/{{ $agt->idanggota}} " method="post" enctype="multipart/form-data">
-                    @csrf
-                    {{ method_field('PUT') }}
-                    <div class="form-group row">
-                        <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nip" name="nip" value="{{ $g->nip}}">
-                        </div>
-                    </div>
-
-                    <p>
-                    <div class="form-group row">
-                        <label for="judul" class="col-sm-4 col-form-label">Nama</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama" name="nama" value="$g->nama">
-                        </div>
-                    </div>
-
-                    
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Akhir Modal Peminjaman -->
-<button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalAnggotaEdit{{$g->idanggota}}"> 
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAnggotaBayar"> 
     Bayar
 </button>
                 </div>
+                
             </div>
-        </div>     
+        </div> 
+            
     </div>
 </div>
+
 <br>
 @endforeach
 {{ $anggota->links() }}
+<!-- Awal Modal tambah data Buku -->
+<div class="modal fade" id="modalAnggotaPinjam" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaTambahLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAnggotaTambahLabel">Form Input Peminjaman</h5>
+                </div>
+                <div class="modal-body">
+
+                    <form name="formanggotatambah" id="formanggotatambah" action="/anggota/tambah " method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan NIP">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-4 col-form-label">Nama</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Lengkap">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-4 col-form-label">Petugas</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Petugas">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="form-group row">
+                            <label for="tgl_lahir" class="col-sm-4 col-form-label">Tanggal Pinjam</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="tgl_pinjam" name="tgl_pinjam" placeholder="Masukan Tanggal">
+                            </div>
+                        </div>
+
+                    <p>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-4 col-form-label">Jumlah Pinjaman</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="jmlh_pinjam" name="jmlh_pinjam" placeholder="Masukan Nama Lengkap">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="modal-footer">
+                            <button type="button" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" name="bukutambah" class="btn btn-success">Tambah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Akhir Modal Pinjam -->
+
+    <!-- Awal Modal Bayar -->
+<div class="modal fade" id="modalAnggotaBayar" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaBayarLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAnggotaBayarLabel">Form Input Pembayaran</h5>
+                </div>
+                <div class="modal-body">
+
+                    <form name="formanggotatambah" id="formanggotatambah" action="/anggota/tambah " method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan NIP">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-4 col-form-label">Nama</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Lengkap">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-4 col-form-label">Petugas</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Petugas">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="form-group row">
+                            <label for="tgl_lahir" class="col-sm-4 col-form-label">Tanggal Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="tgl_pinjam" name="tgl_pinjam" placeholder="Masukan Tanggal">
+                            </div>
+                        </div>
+
+                    <p>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-4 col-form-label">Jumlah Bayar</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="jmlh_pinjam" name="jmlh_pinjam" placeholder="Masukan Nama Lengkap">
+                            </div>
+                        </div>
+
+                        <p>
+                        <div class="modal-footer">
+                            <button type="button" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" name="bukutambah" class="btn btn-success">Tambah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Akhir Modal Bayar-->
+
 </div>
 @endsection
