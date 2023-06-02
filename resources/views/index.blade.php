@@ -62,7 +62,7 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="/anggota" class="link-dark rounded">Anggota</a></li>
             <li><a href="/petugas" class="link-dark rounded">Petugas</a></li>
-            <li><a href="#" class="link-dark rounded">Simpanan</a></li>
+            <li><a href="/simpan" class="link-dark rounded">Simpanan</a></li>
             <li><a href="/pinjam" class="link-dark rounded">Pinjaman</a></li>
           </ul>
         </div>
@@ -98,7 +98,9 @@
                 <nav class="navbar navbar-expand-lg navbar-light px-3" style="background-color:#65A834;display: flex;justify-content: flex-end;">
                 <div class="input-group" style="width:500px;">
   <input type="search" class="form-control rounded float-right" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-
+  <button type="button" class="btn btn-success float-right">
+    Search
+</button>
 </div>
             
                 </nav>

@@ -7,7 +7,7 @@
 <p>
 <div class="rounded shadow-sm bg-body border">
     <div class="py-2 px-3 text-light h6" style="background-color:#65A834;">
-        Kontak Kami
+        Kirimkan Kritik dan Saran Anda di bawah ini
     </div>
     <div class="p-3">
         <div class="container-fluid">
@@ -44,16 +44,13 @@
                             <div class="col-sm-11">
                                  <!-- Message input -->
                             <div class="form-outline mb-4">
-                                <textarea class="form-control" id="form4Example3" rows="3"></textarea>
+                                <textarea class="form-control" id="form4Example3" rows="2"></textarea>
                             </div>
                             </div>
                         </div>
-
-
-                        <p>
                         <div class="modal-footer">
                             <button type="button" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" name="bukutambah" class="btn btn-success">Kirim</button>
+                            <button type="submit" name="kirim" class="btn btn-success">Kirim</button>
                         </div>
                     </form>
                 </div>

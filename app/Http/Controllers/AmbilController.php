@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\BayarModel;
+use App\Models\AmbilModel;
 use Carbon\Carbon;
 
-class BayarController extends Controller
+class AmbilController extends Controller
 {
-    public function bayartambah(Request $request){
+    
+    public function ambiltambah(Request $request){
         $this->validate($request, [
             'anggota' => 'required',
             'petugas' => 'required',
             'jmlh_bayar' => 'required'
         ]);
 
-        BayarModel::create([
+        AmbilModel::create([
             'idanggota' => $request->anggota,
             'idpetugas' => $request->petugas, 
             'jmlh_bayar' => $request->jmlh_bayar,
@@ -25,9 +26,9 @@ class BayarController extends Controller
         return redirect()->back();
     }
 
-    public function bayarhapus($idbayar){
-        $databayar=BayarModel::find($idbayar);
-        $databayar->delete();
+    public function ambilhapus($idambil){
+        $dataambil=AmbilModel::find($idambil);
+        $dataambil->delete();
         
         return redirect()->back();
     }

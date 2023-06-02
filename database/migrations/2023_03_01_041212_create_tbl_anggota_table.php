@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->string('jk');
             $table->text('alamat');
-            $table->number('hp');
+            $table->integer('hp');
             $table->string('file');
             $table->timestamps();
         });

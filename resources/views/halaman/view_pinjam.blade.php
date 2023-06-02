@@ -3,116 +3,162 @@
 @section('halaman', 'Data Peminjaman')
 
 @section('isihalaman')
-<br>
 <div class="container">
+<p>
+<h3><center>Peminjaman Uang Koperasi SMK Negeri 1 Cimahi</center></h3>
 
-<div class="py-2 px-3 text h6" style="background-color: #E8EBED;">
-<div class="nav d-flex justify-content-between">
-Daftar Anggota
-<form class="d-flex" action="/coba/cari" method="GET">
-<div class="input-group input-group-sm " style="width:300px;display:flex-end">
-  <input type="text" name="cari" class="form-control rounded float-right"  placeholder="Cari Data Anggota" aria-label="Search" aria-describedby="search-addon" value="{{ old('cari') }}"/>
-  <input type="submit" class="btn btn-success float-right" value="Search"/>
-</div>
-</form>
-</div>
-</div>
+    <br>
 
-@foreach($anggota as $g)
-<div class="rounded shadow-sm bg-body border">
-    <div class="py-2 px-3 bg-success text-light h6">
-        Data Anggota
-    </div>
-    <div class="p-3">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                <table class="table table-striped">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPinjamTambah"> 
+        Tambah Data Peminjaman
+    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBayarTambah"> 
+        Tambah Data Pembayaran
+    </button>
+
+    <p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td align="center">No</td>
+                <td align="center">Nama Anggota</td>
+                {{-- <td align="center">Nama Petugas</td> --}}
+                {{-- <td align="center">Tanggal Peminjaman</td> --}}
+                <td align="center">Total Pinjaman</td>
+                <td align="center"></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($anggota as $index=>$p)
+                <tr>
+                    <td align="center" scope="row">{{ $index + $pinjam->firstItem() }}</td>
+                    <td>{{$p->nama}}</td>
+                    {{-- <td>{{$p->petugas->nama}}</td> --}}
+                    {{-- <td>
+                        {{$p->pinjam->last()}}
+                    </td> --}}
+                    <td>
+                        {{$p->totalPinjam()}} 
+                    </td>
+                    <td align="center">
+
+<!-- Awal Modal pinjam data Buku -->
+<div class="modal fade" id="modalEdit{{$p->idpinjam}}" tabindex="-1" role="dialog" aria-labelledby="modalPetugasEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPetugasEditLabel">Data Peminjaman {{ $p->nama }}</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>Nama Petugas</td>
+                            <td>Tanggal</td>
+                            <td>Jumlah</td>
+                            <td>Tipe</td>
+                            <td></td>
+                        </tr>
+                    </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">NIP</th>
-                        <td>: {{ $g->nip }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nama</th>
-                        <td>: {{ $g->nama }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Total Pinjaman</th>
-                        <td>: {{ $g->pinjaman }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Foto</th>
-                        <td>: <img style="max-width:50px;max-height:50px" src="{{ url('/Gambar/' . $g->file) }}"></td>
-                    </tr>
+                        @foreach ($p->transaksiPinjam() as $t)
+                            <tr>
+                                <td>{{$t->petugas->nama}}</td>
+                                @if($t->idpinjam)
+                                    <td>{{$t->tgl_pinjam}}</td>
+                                    <td>{{$t->jmlh_pinjam}}</td>
+                                    <td>Pinjam</td>
+                                    <td>
+                                        <a href="pinjam/hapus/{{$t->idpinjam}}" onclick="return confirm('Yakin mau dihapus?')">
+                                            <button class="btn btn-danger">
+                                                x
+                                            </button>
+                                        </a>
+                                    </td>
+                                @else
+                                    <td>{{$t->tgl_bayar}}</td>
+                                    <td>{{$t->jmlh_bayar}}</td>
+                                    <td>Bayar</td>
+                                    <td>
+                                        <a href="bayar/hapus/{{$t->idbayar}}" onclick="return confirm('Yakin mau dihapus?')">
+                                            <button class="btn btn-danger">
+                                                x
+                                            </button>
+                                        </a>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAnggotaPinjam">
-                    Pinjam
-                </button>
-                
-
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAnggotaBayar"> 
-    Bayar
-</button>
+                <div class="modal-footer">
+                    <button type="button" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 </div>
-                
             </div>
-        </div> 
-            
+        </div>
     </div>
 </div>
+<!-- Akhir Modal EDIT data buku -->
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalEdit{{$p->idpinjam}}"> 
+                            Detail
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-<br>
-@endforeach
-{{ $anggota->links() }}
-<!-- Awal Modal tambah data Buku -->
-<div class="modal fade" id="modalAnggotaPinjam" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaTambahLabel" aria-hidden="true">
+    <!--awal pagination-->
+    Halaman : {{ $pinjam->currentPage() }} <br />
+    Jumlah Data : {{ $pinjam->total() }} <br />
+    Data Per Halaman : {{ $pinjam->perPage() }} <br />
+
+    {{ $pinjam->links() }}
+    <!--akhir pagination-->
+    
+
+    <!-- Awal Modal tambah data Buku -->
+    <div class="modal fade" id="modalPinjamTambah" tabindex="-1" role="dialog" aria-labelledby="modalPeminjamanTambahLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalAnggotaTambahLabel">Form Input Peminjaman</h5>
+                    <h5 class="modal-title" id="modalPeminjamanTambahLabel">Form Input Data Peminjaman</h5>
                 </div>
                 <div class="modal-body">
 
-                    <form name="formanggotatambah" id="formanggotatambah" action="/anggota/tambah " method="post" enctype="multipart/form-data">
+                    <form name="formpeminjamantambah" id="formpeminjamantambah" action="/pinjam/tambah " method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
+                            <label for="idpeminjaman" class="col-sm-4 col-form-label">Nama Anggota</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan NIP">
+                                <select class="form-control" name="anggota">
+                                    <option selected disabled>Pilih Anggota</option>
+                                    @foreach ($anggota as $agt)
+                                        <option value="{{ $agt->idanggota }}">{{ $agt->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-
+                        
                         <p>
                         <div class="form-group row">
-                            <label for="nama" class="col-sm-4 col-form-label">Nama</label>
+                            <label for="idpeminjaman" class="col-sm-4 col-form-label">Nama Petugas</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Lengkap">
+                                <select class="form-control" name="petugas">
+                                    <option selected disabled>Pilih Petugas</option>
+                                    @foreach ($petugas as $ptg)
+                                        <option value="{{ $ptg->idpetugas }}">{{ $ptg->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-
+                        
                         <p>
                         <div class="form-group row">
-                            <label for="nama" class="col-sm-4 col-form-label">Petugas</label>
+                            <label for="jumlah" class="col-sm-4 col-form-label">Jumlah Pinjam</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Petugas">
-                            </div>
-                        </div>
-
-                        <p>
-                        <div class="form-group row">
-                            <label for="tgl_lahir" class="col-sm-4 col-form-label">Tanggal Pinjam</label>
-                            <div class="col-sm-8">
-                                <input type="date" class="form-control" id="tgl_pinjam" name="tgl_pinjam" placeholder="Masukan Tanggal">
-                            </div>
-                        </div>
-
-                    <p>
-                        <div class="form-group row">
-                            <label for="nama" class="col-sm-4 col-form-label">Jumlah Pinjaman</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" id="jmlh_pinjam" name="jmlh_pinjam" placeholder="Masukan Nama Lengkap">
+                                <input type="number" class="form-control" id="jumlah" name="jmlh_pinjam" placeholder="Masukan Jumlah Pinjam">
                             </div>
                         </div>
 
@@ -126,55 +172,46 @@ Daftar Anggota
             </div>
         </div>
     </div>
-    <!-- Akhir Modal Pinjam -->
-
-    <!-- Awal Modal Bayar -->
-<div class="modal fade" id="modalAnggotaBayar" tabindex="-1" role="dialog" aria-labelledby="modalAnggotaBayarLabel" aria-hidden="true">
+    <div class="modal fade" id="modalBayarTambah" tabindex="-1" role="dialog" aria-labelledby="modalPembayaranTambahLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalAnggotaBayarLabel">Form Input Pembayaran</h5>
+                    <h5 class="modal-title" id="modalPembayaranTambahLabel">Form Input Data Pembayaran</h5>
                 </div>
                 <div class="modal-body">
 
-                    <form name="formanggotatambah" id="formanggotatambah" action="/anggota/tambah " method="post" enctype="multipart/form-data">
+                    <form name="formpembayarantambah" id="formpembayarantambah" action="/bayar/tambah " method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label for="idanggota" class="col-sm-4 col-form-label">NIP</label>
+                            <label for="idpembayaran" class="col-sm-4 col-form-label">Nama Anggota</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan NIP">
+                                <select class="form-control" name="anggota">
+                                    <option selected disabled>Pilih Anggota</option>
+                                    @foreach ($anggota as $agt)
+                                        <option value="{{ $agt->idanggota }}">{{ $agt->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-
+                        
                         <p>
                         <div class="form-group row">
-                            <label for="nama" class="col-sm-4 col-form-label">Nama</label>
+                            <label for="idpembayaran" class="col-sm-4 col-form-label">Nama Petugas</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Lengkap">
+                                <select class="form-control" name="petugas">
+                                    <option selected disabled>Pilih Petugas</option>
+                                    @foreach ($petugas as $ptg)
+                                        <option value="{{ $ptg->idpetugas }}">{{ $ptg->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-
+                        
                         <p>
                         <div class="form-group row">
-                            <label for="nama" class="col-sm-4 col-form-label">Petugas</label>
+                            <label for="jumlah" class="col-sm-4 col-form-label">Jumlah Bayar</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Petugas">
-                            </div>
-                        </div>
-
-                        <p>
-                        <div class="form-group row">
-                            <label for="tgl_lahir" class="col-sm-4 col-form-label">Tanggal Bayar</label>
-                            <div class="col-sm-8">
-                                <input type="date" class="form-control" id="tgl_pinjam" name="tgl_pinjam" placeholder="Masukan Tanggal">
-                            </div>
-                        </div>
-
-                    <p>
-                        <div class="form-group row">
-                            <label for="nama" class="col-sm-4 col-form-label">Jumlah Bayar</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" id="jmlh_pinjam" name="jmlh_pinjam" placeholder="Masukan Nama Lengkap">
+                                <input type="number" class="form-control" id="jumlah" name="jmlh_bayar" placeholder="Masukan Jumlah Bayar">
                             </div>
                         </div>
 
@@ -188,7 +225,7 @@ Daftar Anggota
             </div>
         </div>
     </div>
-    <!-- Akhir Modal Bayar-->
+    <!-- Akhir Modal tambah data buku -->
+    </div>
 
-</div>
-@endsection
+    @endsection

@@ -18,6 +18,7 @@ class PinjamModel extends Model
         return $this->belongsTo('App\Models\AnggotaModel', 'idanggota');
     }
 
+
     //relasi ke petugas
     public function petugas()
     {
@@ -29,16 +30,16 @@ class PinjamModel extends Model
         return $this->hasMany(BayarModel::class);
     }
 
-    public static function pinjam($idanggota, $jmlh_pinjam, $tgl_pinjam)
-    {
-        $peminjaman = new PinjamModel;
-        $peminjaman->idanggota = $idanggota;
-        $peminjaman->jmlh_pinjam = $jmlh_pinjam;
-        $peminjaman->tgl_pinjam = $tgl_pinjam;
-        $peminjaman->save();
+    // public static function pinjam($idanggota, $jmlh_pinjam, $tgl_pinjam)
+    // {
+    //     $peminjaman = new PinjamModel;
+    //     $peminjaman->idanggota = $idanggota;
+    //     $peminjaman->jmlh_pinjam = $jmlh_pinjam;
+    //     $peminjaman->tgl_pinjam = $tgl_pinjam;
+    //     $peminjaman->save();
 
-        return $peminjaman;
-    }
+    //     return $peminjaman;
+    // }
 
     public function daftarPeminjaman()
     {

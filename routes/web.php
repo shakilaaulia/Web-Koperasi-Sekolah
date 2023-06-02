@@ -37,12 +37,28 @@ Route::middleware('auth')->group(function(){
     Route::get('/petugas/hapus/{idpetugas}','PetugasController@petugashapus');
     Route::put('/petugas/edit/{idpetugas}', 'PetugasController@petugasedit');
     
-    //Route untuk Data Pinjam
-    Route::get('/pinjam', 'PinjamController@pinjamtampil');
-    Route::get('/pinjam/cari','PinjamController@cari');
-    Route::post('/pinjam/tambah','PinjamController@pinjamtambah');
-    Route::get('/pinjam/hapus/{idpinjam}','PinjamController@pinjamhapus');
-    Route::put('/pinjam/edit/{idpinjam}', 'PinjamController@pinjamedit');
+    //Route untuk Data Simpan
+    Route::get('/simpan', 'SimpanController@simpantampil');
+    Route::post('/simpan/tambah','SimpanController@simpantambah');
+    Route::get('/simpan/hapus/{idsimpan}','SimpanController@simpanhapus');
+    Route::put('/simpan/edit/{idsimpan}', 'SimpanController@simpanedit');
+
+     //Route untuk Data Pinjam
+     Route::get('/pinjam', 'PinjamController@pinjamtampil');
+     Route::post('/pinjam/tambah','PinjamController@pinjamtambah');
+     Route::get('/pinjam/hapus/{idpinjam}','PinjamController@pinjamhapus');
+     Route::put('/pinjam/edit/{idpinjam}', 'PinjamController@pinjamedit');
+ 
+     //Route untuk Data Pembayaran
+     Route::post('/bayar/tambah','BayarController@bayartambah');
+     Route::get('/bayar/hapus/{idbayar}','BayarController@bayarhapus');
+
+     //Route untuk Data Pengambilan
+     Route::post('/ambil/tambah','AmbilController@ambiltambah');
+     Route::get('/ambil/hapus/{idambil}','AmbilController@ambilhapus');
+
+    Route::get('/coba', 'PinjamController@tampil');
+    Route::get('/coba/cari','PinjamController@cari');
 
 });
 

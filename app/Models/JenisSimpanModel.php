@@ -11,4 +11,6 @@ class JenisSimpanModel extends Model
     protected $table        = "tbl_jenissimpan";
     protected $primaryKey   = "idjenis";
     protected $fillable     = ['idjenis','jenis_simpan'];
+
+    public $timestamps = false;
 }

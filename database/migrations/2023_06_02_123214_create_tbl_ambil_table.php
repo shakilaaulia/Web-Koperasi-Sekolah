@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_simpan', function (Blueprint $table) {
-            $table->increments('idsimpan');
+        Schema::create('tbl_ambil', function (Blueprint $table) {
+            $table->increments('idambil');
             $table->integer('idanggota')->unsigned();
             $table->foreign('idanggota')
             ->references('idanggota')
@@ -23,12 +23,6 @@ return new class extends Migration
             $table->foreign('idpetugas')
             ->references('idpetugas')
             ->on('tbl_petugas')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->integer('jenis_simpan')->unsigned();
-            $table->foreign('jenis_simpan')
-            ->references('idjenis')
-            ->on('tbl_jenissimpan')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->integer('jmlh_bayar');
@@ -42,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_transaksi');
+        Schema::dropIfExists('tbl_ambil');
     }
 };
